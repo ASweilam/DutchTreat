@@ -1,18 +1,31 @@
-﻿
+﻿$(document).ready(function () {
+
+    var theForm = $("#theForm");
+
+    theForm.hide();
+
+    var button = $("#BuyButton");
+
+    button.on("click", function() {
+        console.log("Buying Item");
+    });
 
 
-var theForm = $("#theForm");
+    var productInfo = $(".product-props li");
+    productInfo.on("click", function() {
+        console.log("You clicked on" + $(this).text());
+    });
 
-theForm.hide();
 
-var button = $("#BuyButton");
+    var $loginToggle = $("#loginToggle");
+    var $popupForm = $(".popup-form");
 
-button.on("click", function () {
-    console.log("Buying Item");
+    $loginToggle.on("click", function() {
+        $popupForm.fadeToggle(500);
+    });
+
+
+
+
 });
 
-
-var productInfo = $(".product-props li");
-productInfo.on("click", function () {
-    console.log("You clicked on" + $(this).text);
-});
