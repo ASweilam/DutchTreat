@@ -24,6 +24,7 @@ namespace DutchTreat.Data
         {
             //esure the db exists
             _ctx.Database.EnsureCreated();
+
             if (!_ctx.Products.Any())
             {
                 var filepath = Path.Combine(_hosting.ContentRootPath, "Data/art.json");
