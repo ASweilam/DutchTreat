@@ -16,7 +16,7 @@ namespace DutchTreat
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration Configuration;
         //constructor injection
         public Startup(IConfiguration configuration)
         {
