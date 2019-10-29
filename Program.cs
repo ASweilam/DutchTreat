@@ -40,6 +40,7 @@ namespace DutchTreat
                 .UseStartup<Startup>()
                 .Build();
 
+
         private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
         {
             // Removing the default configuration options
