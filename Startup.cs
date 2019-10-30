@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace DutchTreat
 {
@@ -39,9 +40,10 @@ namespace DutchTreat
 
 
       services.AddTransient<IMailService, NullMailService>();
-      // Support for real mail service
+            // Support for real mail service
 
-      services.AddControllersWithViews();
+            //services.AddControllersWithViews().AddJsonOptions(opt=>opt.JsonSerializerOptions);
+            services.AddControllersWithViews();
 
     }
 
