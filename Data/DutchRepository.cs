@@ -42,6 +42,11 @@ namespace DutchTreat.Data
             }
         }
 
+        public object GetOrderById(int id)
+        {
+            return _ctx.Orders.Find(id);
+        }
+
         public IEnumerable<Product> GetProductsByCategory(string category)
         {
             return _ctx.Products
