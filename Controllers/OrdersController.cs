@@ -37,6 +37,21 @@ namespace DutchTreat.Controllers
             }
         }
 
+        public IActionResult Get(int id)
+        {
+            try
+            {
+                return Ok(_repository.GetOrderById(id));
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError($"Failed to get order:{ex}");
+                return BadRequest("Failed to get order");
+            }
+        
+        }
+
     }
 
 
