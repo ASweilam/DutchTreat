@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DutchTreat.Data;
+using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -54,6 +55,28 @@ namespace DutchTreat.Controllers
                 return BadRequest("Failed to get order");
             }
         
+        }
+
+
+        [HttpPost]
+        public IActionResult Post([FromBody]Order model)
+        {
+
+            try
+            {
+                _repository.AddEntity(model);
+               if( _repository.SaveAll())
+                {
+                    return Created($"/api/orders/{model.Id}", model);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError($"Failed to save a new order: {ex}"); ;
+            }
+
+            return BadRequest("Failed to save new order");
         }
 
     }
