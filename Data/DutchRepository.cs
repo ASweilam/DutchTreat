@@ -50,7 +50,7 @@ namespace DutchTreat.Data
             }
         }
 
-        public object GetOrderById(int id)
+        public Order GetOrderById(int id)
         {
             return _ctx.Orders
                 .Include(o => o.Items)
