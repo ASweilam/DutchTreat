@@ -1,31 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using DutchTreat.Data;
 using DutchTreat.Services;
 using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace DutchTreat.Controllers
 {
     public class AppController : Controller
     {
         private readonly IMailService _mailService;
-        private readonly DutchContext _ctx;
+        private readonly IDutchRepository _repository;
 
-        public AppController(IMailService mailService, DutchContext ctx)
+        public AppController(IMailService mailService, IDutchRepository repository)
         {
             _mailService = mailService;
-            _ctx = ctx;
+            _repository = repository;
         }
 
-        // GET: /<controller>/
         public IActionResult Index()
         {
-            var results = _ctx.Products.ToList();
             return View();
         }
 
@@ -40,13 +37,10 @@ namespace DutchTreat.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Send the email
                 _mailService.SendMessage("shawn@wildermuth.com", model.Subject, $"From: {model.Name} - {model.Email}, Message: {model.Message}");
                 ViewBag.UserMessage = "Mail Sent";
                 ModelState.Clear();
-            }
-            else
-            {
-
             }
 
             return View();
@@ -54,7 +48,17 @@ namespace DutchTreat.Controllers
 
         public IActionResult About()
         {
+            ViewBag.Title = "About Us";
+
             return View();
         }
+
+        public IActionResult Shop()
+        {
+            var results = _repository.GetAllProducts();
+
+            return View(results);
+        }
+
     }
 }
