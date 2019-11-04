@@ -26,7 +26,6 @@ namespace DutchTreat
         private static void SeedDb(IWebHost host)
         {
             var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
-
             using (var scope = scopeFactory.CreateScope())
             {
                 var seeder = scope.ServiceProvider.GetService<DutchSeeder>();
@@ -39,7 +38,6 @@ namespace DutchTreat
                 .ConfigureAppConfiguration(SetupConfiguration)
                 .UseStartup<Startup>()
                 .Build();
-
 
         private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
         {
