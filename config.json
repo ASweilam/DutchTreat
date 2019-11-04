@@ -3,7 +3,7 @@
     "Favorite": "blue"
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=DutchTreatDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DutchConnectionString": "Server=(localdb)\\mssqllocaldb;Database=DutchTreatDb;Trusted_Connection=True;MultipleActiveResultSets=true"
   },
   "Logging": {
     "LogLevel": {
