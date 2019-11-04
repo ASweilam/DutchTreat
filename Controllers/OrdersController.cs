@@ -33,7 +33,7 @@ namespace DutchTreat.Controllers
         {
             try
             {
-                var results = _repository.GetAllOrders();
+                var results = _repository.GetAllOrders(includeItems);
 
                 return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
             }
