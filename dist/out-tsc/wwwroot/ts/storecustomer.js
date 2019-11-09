@@ -14,4 +14,4 @@ class StoreCustomer {
         return this.ourName;
     }
 }
-//# sourceMappingURL=storecustomer.js.map
+//# sourceMappingURL=storecustomer.js.map 
