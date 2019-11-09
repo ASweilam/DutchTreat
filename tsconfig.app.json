@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": ".wwwroot/ClientApp/out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "ClientApp/main.ts",
+    "ClientApp/polyfills.ts"
+  ],
+  "include": [
+    "ClientApp/**/*.ts"
+  ],
+  "exclude": [
+    "ClientApp/test.ts",
+    "ClientApp/**/*.spec.ts",
+    "/node_modules/@types/node/index.d.ts"
+  ]
+}
