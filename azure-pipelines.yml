@@ -5,15 +5,25 @@
 
 trigger:
 - master
-
 pool:
   vmImage: 'ubuntu-latest'
-
 variables:
- buildConfiguration: 'Release'
-
+  system.debug: true
 steps:
-- script: dotnet restore
-
-- script: dotnet build --configuration $(buildConfiguration)
- displayName: 'dotnet build $(buildConfiguration)'
+  - task: NodeTool@0
+    inputs:    
+      versionSpec: '10.x'
+  - script:
+      npm install @angular/cli -g
+    workingDirectory: 'Client'
+  - script:
+      npm install
+    workingDirectory: 'Client'
+  - script:  
+      ng build 
+    displayName: 'ng build'
+    workingDirectory: Client
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'Client/dist'
+      ArtifactName: angular2 
