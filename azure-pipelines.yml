@@ -17,5 +17,11 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+  - script:
+      npm install @angular/cli -g
+    workingDirectory: 'Client'
+  - script:
+      npm install
+    workingDirectory: 'Client'
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
