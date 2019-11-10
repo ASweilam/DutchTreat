@@ -12,7 +12,12 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+before_script:
+    - "dotnet --info"
+    - "curl -sL https://deb.nodesource.com/setup_10.x | bash -"
+    - "apt-get install -y nodejs"
+    - "npm install -g @angular/cli"
+
 steps:
-- task: NodeTool@0
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
