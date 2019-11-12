@@ -3,27 +3,17 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-trigger:
-- master
-pool:
-  vmImage: 'ubuntu-latest'
-variables:
-  system.debug: true
-steps:
-  - task: NodeTool@0
-    inputs:    
-      versionSpec: '10.x'
-  - script:
-      npm install @angular/cli -g
-    workingDirectory: 'Client'
-  - script:
-      npm install
-    workingDirectory: 'Client'
-  - script:  
-      ng build 
-    displayName: 'ng build'
-    workingDirectory: Client
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: 'Client/dist'
-      ArtifactName: angular2 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+    vstsFeed: '6c629378-8692-46f4-885f-776bd89ce6bc'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
