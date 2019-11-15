@@ -6,4 +6,3 @@
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
-    feedsToUse: 'select'
